@@ -19,3 +19,9 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.bg-pokemon-pattern {
+  background: url('/pokeball.jpg');
+  background-size: 16rem;
+  background-color: #f7f7f7;
+}
