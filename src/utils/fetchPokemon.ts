@@ -1,13 +1,27 @@
-export async function getPokemonList(limit = 151) {
-  const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`);
+import { IPokemon, IPokemonResponseOriginal } from '@/types/pokemon';
+
+export async function getPokemonList(url?: string) {
+  const fetchUrl = url ?? 'https://pokeapi.co/api/v2/pokemon?limit=10';
+  const res = await fetch(fetchUrl);
   const data = await res.json();
-  return data.results.map((pokemon: any, index: number) => ({
-    ...pokemon,
-    id: index + 1,
-    // image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-    //   index + 1
-    // }.png`,
-  }));
+
+  const seenIds = new Set();
+  const uniquePokemons = data.results
+    .map((pokemon: IPokemonResponseOriginal) => ({
+      ...pokemon,
+      id: pokemon.url.split('/').filter(Boolean).pop(), // Extract ID
+    }))
+    .filter((pokemon: IPokemon) => {
+      if (seenIds.has(pokemon.id)) return false;
+      seenIds.add(pokemon.id);
+      return true;
+    });
+
+  return {
+    count: data.count,
+    next: data.next,
+    pokemons: uniquePokemons,
+  };
 }
 
 export async function getPokemonDetails(id: string) {

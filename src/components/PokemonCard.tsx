@@ -2,19 +2,25 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Pokemon } from '@/types/pokemon';
+import { IPokemon } from '@/types/pokemon';
 
-export default function PokemonCard({ pokemon }: { pokemon: any }) {
+export default function PokemonCard({ pokemon }: { pokemon: IPokemon }) {
+  //format the Pokémon ID to three digits as per the git repo
+  const formattedId = pokemon.id.toString().padStart(3, '0');
+  const imageUrl = `https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${formattedId}.png`;
+
   return (
     <Link href={`/pokemon/${pokemon.id}`} prefetch>
       <div className="bg-white p-4 rounded-lg shadow-md hover:scale-105 transition-transform">
-        {/* <Image
-          src={"image.com"}
-          alt={pokemon.name}
-          width={100}
-          height={100}
-          className="mx-auto"
-        /> */}
+        <div className="relative w-24 h-24 mx-auto">
+          <Image
+            src={imageUrl}
+            alt={pokemon.name}
+            layout="fill"
+            objectFit="contain"
+            className="mx-auto"
+          />
+        </div>
         <h3 className="text-lg font-semibold text-center capitalize mt-2">
           {pokemon.name}
         </h3>

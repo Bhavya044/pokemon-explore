@@ -1,26 +1,25 @@
 'use client';
 
-import { Press_Start_2P } from 'next/font/google'; // Pokémon-inspired pixel font
+import { Press_Start_2P } from 'next/font/google';
+import { useState } from 'react';
+import SearchBar from './SearchBar';
 
 const pressStart = Press_Start_2P({ subsets: ['latin'], weight: '400' });
 
 export const Navbar = () => {
+  const [search, setSearch] = useState('');
   return (
-    <div
-      className={`${pressStart.className} bg-red-500 border-b-4 border-yellow-400 py-3 mb-8 sticky top-0 z-50 shadow-lg`}
+    <nav
+      className={`bg-red-500 py-2 shadow-md sticky top-0 z-50 border-b-2 border-yellow-400`}
     >
-      <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-        <h1 className="text-xl sm:text-2xl text-white whitespace-nowrap">
-          🔥 Pokémon Explorer 🔥
+      <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 px-4">
+        <h1
+          className={`${pressStart.className} text-2xl text-white tracking-wide drop-shadow-lg`}
+        >
+          Pokémon Explorer
         </h1>
-        {/* Search bar in the navbar */}
-        <div className="w-full sm:w-1/2">
-          <SearchBar search={search} setSearch={setSearch} />
-        </div>
+        <SearchBar search={search} setSearch={setSearch} />
       </div>
-      <div className="container mx-auto text-center">
-        <h1 className="text-2xl text-white">🔥 Pokémon Explorer 🔥</h1>
-      </div>
-    </div>
+    </nav>
   );
 };
