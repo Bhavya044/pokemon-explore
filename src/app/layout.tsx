@@ -1,4 +1,3 @@
-// src/app/layout.tsx
 import { Navbar } from '@/components/Navbar';
 import './globals.css';
 
@@ -18,7 +17,9 @@ export default function RootLayout({
         <header>
           <Navbar />
         </header>
-        <main className="container mx-auto px-4 mt-2">{children}</main>
+        <main className="container mx-auto px-4 mt-4 max-w-6xl flex justify-center">
+          <div className="w-full max-w-5xl">{children}</div>
+        </main>
       </body>
     </html>
   );
