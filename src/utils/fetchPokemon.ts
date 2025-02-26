@@ -24,11 +24,6 @@ export async function getPokemonList(url?: string) {
   };
 }
 
-export async function getPokemonDetails(id: string) {
-  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-  return res.json();
-}
-
 export const getPokemonByName = async (
   name: string,
 ): Promise<IPokemon | null> => {
@@ -44,4 +39,15 @@ export const getPokemonByName = async (
     console.error(`Error fetching Pokémon by name:`, error);
     return null;
   }
+};
+
+export const getPokemonDetail = async (id: number) => {
+  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch Pokémon details');
+  }
+
+  const data = await res.json();
+  return data;
 };

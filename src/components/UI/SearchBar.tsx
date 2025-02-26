@@ -1,7 +1,7 @@
 import { useSearch } from '@/context/SearchContext';
 import { useEffect, useState } from 'react';
-import PokeballIcon from './icons/PokeballIcon';
-import SearchIcon from './icons/SearchIcon';
+import PokeballIcon from '../icons/PokeballIcon';
+import SearchIcon from '../icons/SearchIcon';
 
 const SearchBar = () => {
   const [inputValue, setInputValue] = useState('');
