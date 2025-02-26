@@ -28,3 +28,8 @@ export async function getPokemonDetails(id: string) {
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
   return res.json();
 }
+
+export const getPokemonByName = async (name: string): Promise<IPokemon> => {
+  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+  return res.json();
+};

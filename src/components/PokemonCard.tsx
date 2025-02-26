@@ -10,7 +10,7 @@ export default function PokemonCard({ pokemon }: { pokemon: IPokemon }) {
 
   return (
     <Link href={`/pokemon/${pokemon.id}`} prefetch>
-      <div className="bg-gradient-to-br from-slate-100 to-slate-200 p-4 sm:p-6 rounded-3xl shadow-lg border border-gray-300 hover:border-blue-400 transition-all duration-300 ease-out">
+      <div className="bg-white p-4 sm:p-6 rounded-3xl shadow-lg border border-gray-300 hover:border-blue-400 transition-all duration-300 ease-out">
         <div className="relative w-24 h-24 sm:w-32 sm:h-32 mx-auto overflow-hidden ">
           <Image
             src="/blue-splash.png"
