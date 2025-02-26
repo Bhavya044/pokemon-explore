@@ -13,7 +13,7 @@ export default function SearchBar({ search, setSearch }: Props) {
       <input
         type="text"
         placeholder="Search Pokemon by name..."
-        className="w-full p-2 pl-12 text-gray-600 rounded-full shadow-md border-2 border-yellow-400  focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-red-500 transition-all duration-200 placeholder-gray-400"
+        className="w-full md:p-2  p-0.5 md:pl-12 pl-10 text-gray-600 rounded-full shadow-md border-2 border-yellow-400  focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-red-500 transition-all duration-200 placeholder-gray-400"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />

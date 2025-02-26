@@ -54,7 +54,7 @@ const PokemonList: React.FC<IPokemonListProps> = ({
       <div className="flex justify-end mb-4">
         <div className="bg-gray-100 text-gray-800 rounded-full px-4 py-1 shadow-sm flex items-center space-x-2">
           <PokeballIcon className="w-5 h-5" />
-          <span className="text-sm font-medium">
+          <span className=" text-sm font-medium">
             You&apos;ve caught{' '}
             <span className="text-blue-600 font-semibold">
               {pokemons.length}
