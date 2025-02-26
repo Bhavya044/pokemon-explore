@@ -19,8 +19,8 @@ export default function RootLayout({
           <header>
             <Navbar />
           </header>
-          <main className="container mx-auto px-4 mt-4 max-w-6xl flex justify-center">
-            <div className="w-full max-w-5xl">{children}</div>
+          <main className="container mx-auto px-4  max-w-5xl  mt-4 items-center flex justify-center">
+            {children}
           </main>
         </SearchProvider>
       </body>

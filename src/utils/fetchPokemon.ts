@@ -6,12 +6,12 @@ export async function getPokemonList(url?: string) {
   const data = await res.json();
 
   const seenIds = new Set();
-  const uniquePokemons = data.results
-    .map((pokemon: IPokemonResponseOriginal) => ({
+  const uniquePokemons = data?.results
+    ?.map((pokemon: IPokemonResponseOriginal) => ({
       ...pokemon,
       id: pokemon.url.split('/').filter(Boolean).pop(), // Extract ID
     }))
-    .filter((pokemon: IPokemon) => {
+    ?.filter((pokemon: IPokemon) => {
       if (seenIds.has(pokemon.id)) return false;
       seenIds.add(pokemon.id);
       return true;
@@ -29,7 +29,19 @@ export async function getPokemonDetails(id: string) {
   return res.json();
 }
 
-export const getPokemonByName = async (name: string): Promise<IPokemon> => {
-  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
-  return res.json();
+export const getPokemonByName = async (
+  name: string,
+): Promise<IPokemon | null> => {
+  try {
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+
+    if (!res.ok) {
+      return null;
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error(`Error fetching Pokémon by name:`, error);
+    return null;
+  }
 };

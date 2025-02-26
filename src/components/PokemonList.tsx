@@ -27,7 +27,6 @@ const PokemonList: React.FC<IPokemonListProps> = ({
 
   const observerRef = useRef<IntersectionObserver | null>(null);
 
-  // 🔍 Handle Pokémon search
   useEffect(() => {
     const fetchSearchPokemon = async () => {
       if (search.trim() === '') {
@@ -37,6 +36,7 @@ const PokemonList: React.FC<IPokemonListProps> = ({
       try {
         setSearchLoading(true);
         const pokemon = await getPokemonByName(search.toLowerCase());
+
         setFilteredPokemons(pokemon ? [pokemon] : []);
         setSearchLoading(false);
       } catch (error) {
@@ -50,14 +50,14 @@ const PokemonList: React.FC<IPokemonListProps> = ({
   }, [search, pokemons, setSearchLoading]);
 
   const loadMorePokemons = useCallback(async () => {
-    if (!next || pokemons.length >= totalCount) return;
+    if (!next || pokemons.length >= totalCount || search) return;
     setLoading(true);
     const { pokemons: newPokemons, next: newNext } = await getPokemonList(next);
     setPokemons((prev) => [...prev, ...newPokemons]);
     setFilteredPokemons((prev) => [...prev, ...newPokemons]);
     setNext(newNext);
     setLoading(false);
-  }, [next, pokemons.length, totalCount]);
+  }, [next, pokemons.length, totalCount, search]);
 
   const lastPokemonRef = useCallback(
     (node: HTMLDivElement | null) => {
@@ -80,22 +80,23 @@ const PokemonList: React.FC<IPokemonListProps> = ({
       <div className="flex justify-end mb-4">
         <div className="bg-gray-100 text-gray-800 rounded-full px-4 py-1 shadow-sm flex items-center space-x-2">
           <PokeballIcon className="w-5 h-5" />
-          <span className=" text-sm font-medium">
-            Showing{' '}
+          <span className="text-sm font-medium">
+            Explored{' '}
             <span className="text-blue-600 font-semibold">
               {filteredPokemons.length}
             </span>{' '}
-            Pokémon
+            out of{' '}
+            <span className="text-blue-600 font-semibold">{totalCount}</span>{' '}
+            Pokemon
           </span>
         </div>
       </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5 content-center justify-center w-full">
         {filteredPokemons.map((pokemon, index) => (
           <div
             ref={index === filteredPokemons.length - 1 ? lastPokemonRef : null}
             key={pokemon.id}
-            className="transition-transform transform hover:scale-105 hover:shadow-md rounded-lg duration-300"
+            className="transition-transform transform hover:scale-105  hover:shadow-md rounded-lg duration-300 mx-auto"
           >
             <PokemonCard pokemon={pokemon} />
           </div>
@@ -110,11 +111,13 @@ const PokemonList: React.FC<IPokemonListProps> = ({
           <p className="ml-3 text-gray-600 font-medium">Loading Pokémon...</p>
         </div>
       )}
-
       {!loading && filteredPokemons.length === 0 && (
-        <p className="text-center mt-6 text-red-500 text-base font-semibold">
-          🚫 No Pokémon found with that name.
-        </p>
+        <div className="flex justify-center items-center mt-6 p-4 bg-gray-100 border-l-4 border-red-500 text-gray-700 rounded-md shadow-sm">
+          <span className="mr-3 text-red-500 text-xl">❌</span>
+          <p className="text-center text-lg font-medium">
+            No Pokemon found with that name.
+          </p>
+        </div>
       )}
 
       {!loading &&
