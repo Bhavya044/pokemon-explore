@@ -19,7 +19,7 @@ const PokemonList: React.FC<IPokemonListProps> = ({
   totalCount,
   nextUrl,
 }) => {
-  const { search, setSearchLoading, setSearch } = useSearch();
+  const { search, setSearchLoading } = useSearch();
   const [pokemons, setPokemons] = useState<IPokemon[]>(initialPokemons);
   const [filteredPokemons, setFilteredPokemons] =
     useState<IPokemon[]>(initialPokemons);
@@ -27,7 +27,6 @@ const PokemonList: React.FC<IPokemonListProps> = ({
   const [loading, setLoading] = useState(false);
 
   const observerRef = useRef<IntersectionObserver | null>(null);
-
   useEffect(() => {
     const fetchSearchPokemon = async () => {
       if (search.trim() === '') {

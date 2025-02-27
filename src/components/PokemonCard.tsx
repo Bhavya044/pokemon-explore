@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { useState } from 'react';
 import { IPokemon } from '@/types/pokemon';
 import SplashBg from './UI/SplashBg';
@@ -10,7 +9,7 @@ export default function PokemonCard({ pokemon }: { pokemon: IPokemon }) {
   const imageUrl = `https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${formattedId}.png`;
 
   return (
-    <Link href={`/pokemon/${pokemon.id}`} prefetch>
+    <Link scroll={false} href={`/pokemon/${pokemon.id}`} prefetch>
       <div className="bg-white p-4 sm:p-6 rounded-3xl shadow-lg border border-gray-300 hover:border-blue-400 transition-all duration-300 ease-out">
         <SplashBg
           imageUrl={imageUrl}

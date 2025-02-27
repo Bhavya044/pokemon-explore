@@ -9,7 +9,7 @@ import SearchIcon from '../icons/SearchIcon';
 
 const SearchBar = () => {
   const [inputValue, setInputValue] = useState('');
-  const { setSearchLoading, setSearch, searchLoading, setSearchError } =
+  const { setSearchLoading, setSearch, searchLoading, setSearchError, search } =
     useSearch();
   const router = useRouter();
   const pathname = usePathname();
@@ -43,14 +43,13 @@ const SearchBar = () => {
     }, 500);
 
     return () => clearTimeout(handler);
-  }, [
-    inputValue,
-    setSearch,
-    setSearchLoading,
-    setSearchError,
-    router,
-    pathname,
-  ]);
+  }, [inputValue, pathname]);
+
+  useEffect(() => {
+    if (search === '') {
+      setInputValue('');
+    }
+  }, [search]);
 
   return (
     <div className="relative w-full sm:w-72">

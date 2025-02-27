@@ -24,7 +24,7 @@ const PokemonDetail = ({ pokemon }: { pokemon: any }) => {
   ) : (
     <div className="relative max-w-6xl mx-auto p-8 bg-white backdrop-blur-lg space-y-6 shadow-xl rounded-3xl border border-gray-300">
       {' '}
-      <div className="flex justify-between ">
+      <div className="flex justify-between items-center ">
         <div>
           {pokemon.id > 1 && (
             <button
