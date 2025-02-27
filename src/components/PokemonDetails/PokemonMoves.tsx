@@ -1,11 +1,12 @@
-interface PokemonMovesProps {
-  moves: { name: string; version: string }[];
-}
+import { IPokemonMove } from '@/types/pokemon';
+import React from 'react';
 
-const PokemonMoves = ({ moves }: PokemonMovesProps) => {
+export const PokemonMoves: React.FC<{ moves: IPokemonMove[] }> = ({
+  moves,
+}) => {
   return (
     <div className="grid grid-cols-2 p-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 max-h-60 overflow-y-auto ">
-      {moves.map((move) => (
+      {moves?.map((move) => (
         <div
           key={move.name}
           className="border-2 border-red-500 px-3 py-2 rounded-lg text-sm font-medium shadow-md hover:bg-yellow-200 transition-all transform hover:scale-105 flex flex-col items-center gap-1"
@@ -17,5 +18,3 @@ const PokemonMoves = ({ moves }: PokemonMovesProps) => {
     </div>
   );
 };
-
-export default PokemonMoves;

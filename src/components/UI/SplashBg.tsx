@@ -1,12 +1,13 @@
 'use client';
+
 import Image from 'next/image';
 import React from 'react';
 
-const SplashBg: React.FC<{
+export const SplashBg: React.FC<{
   isLoading?: boolean;
   imageUrl: string;
   pokemonName: string;
-  setIsLoading?: any;
+  setIsLoading?: (loading: boolean) => void;
 }> = ({ isLoading = false, imageUrl, pokemonName, setIsLoading }) => {
   return (
     <div className="relative w-24 h-24 sm:w-32 sm:h-32 mx-auto overflow-hidden ">
@@ -41,5 +42,3 @@ const SplashBg: React.FC<{
     </div>
   );
 };
-
-export default SplashBg;

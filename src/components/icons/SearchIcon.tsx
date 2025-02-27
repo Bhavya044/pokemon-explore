@@ -1,7 +1,7 @@
 'use client';
 
-import { IconProps } from '@/types/pokemon';
 import React from 'react';
+import { IconProps } from '@/types/general';
 
 const SearchIcon: React.FC<IconProps> = ({ width = 24, height = 24 }) => (
   <svg

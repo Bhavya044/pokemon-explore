@@ -3,9 +3,9 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface SearchContextProps {
-  search: string;
+  search: string; //search string
   setSearch: (search: string) => void;
-  searchLoading: boolean;
+  searchLoading: boolean; //boolean indicator
   setSearchLoading: (loading: boolean) => void;
   searchError: string | null;
   setSearchError: (error: string | null) => void;

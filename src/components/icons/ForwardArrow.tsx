@@ -1,7 +1,6 @@
 'use client';
 
-import { IconProps } from '@/types/pokemon';
-import React from 'react';
+import { IconProps } from '@/types/general';
 
 const ForwardArrowIcon: React.FC<IconProps> = ({
   height,

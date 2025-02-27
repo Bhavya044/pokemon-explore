@@ -10,9 +10,10 @@ const pressStart = Press_Start_2P({ subsets: ['latin'], weight: '400' });
 export const Navbar = () => {
   const { setSearch, setSearchError } = useSearch();
 
+  //clear search when navigating to home
   const handleHomeClick = () => {
     setSearch(''); // Clear search input
-    setSearchError(''); // Clear error message (if any)
+    setSearchError(''); // Clear error message
   };
 
   return (

@@ -21,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`bg-pokemon-pattern min-h-screen`}>
+        {/*provide search context globally */}
         <SearchProvider>
           <header>
             <Navbar />

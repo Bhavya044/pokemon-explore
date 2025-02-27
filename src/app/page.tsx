@@ -1,10 +1,13 @@
 import PokemonList from '@/components/PokemonList';
 import { getPokemonList } from '@/utils/fetchPokemon';
 
-export default async function HomePage() {
+const HomePage = async () => {
+  //fetch the initial list of Pokémon
   const { count, pokemons, next } = await getPokemonList();
+
   return (
     <div className="container mx-auto px-4">
+      {/*render the Pokémon list with initial data */}
       <PokemonList
         initialPokemons={pokemons}
         totalCount={count}
@@ -12,4 +15,6 @@ export default async function HomePage() {
       />
     </div>
   );
-}
+};
+
+export default HomePage;

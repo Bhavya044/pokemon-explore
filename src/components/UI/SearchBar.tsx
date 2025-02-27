@@ -43,6 +43,7 @@ const SearchBar = () => {
     }, 500);
 
     return () => clearTimeout(handler);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValue, pathname]);
 
   useEffect(() => {

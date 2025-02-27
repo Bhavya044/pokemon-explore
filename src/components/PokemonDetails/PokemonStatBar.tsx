@@ -1,5 +1,7 @@
 'use client';
 
+import { IPokemonStat } from '@/types/pokemon';
+import React from 'react';
 import {
   BarChart,
   Bar,
@@ -9,11 +11,9 @@ import {
   LabelList,
 } from 'recharts';
 
-interface PokemonStatsProps {
-  stats: { name: string; value: number }[];
-}
-
-const PokemonStats = ({ stats }: PokemonStatsProps) => {
+export const PokemonStats: React.FC<{ stats: IPokemonStat[] }> = ({
+  stats,
+}) => {
   const formattedStats = stats.map((stat) => ({
     name: stat.name.toUpperCase(),
     value: stat.value,
@@ -52,5 +52,3 @@ const PokemonStats = ({ stats }: PokemonStatsProps) => {
     </div>
   );
 };
-
-export default PokemonStats;
