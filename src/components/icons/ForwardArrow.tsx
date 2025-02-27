@@ -3,8 +3,13 @@
 import { IconProps } from '@/types/pokemon';
 import React from 'react';
 
-const ForwardArrowIcon: React.FC<IconProps> = ({ height, width }) => (
+const ForwardArrowIcon: React.FC<IconProps> = ({
+  height,
+  width,
+  className,
+}) => (
   <svg
+    className={className}
     width={width}
     height={height}
     viewBox="0 0 32 32"

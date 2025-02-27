@@ -8,6 +8,7 @@ interface PokemonInfoProps {
   height: number;
   imageUrl: string;
   text: string;
+  captureRate: number;
 }
 
 // Type colors and emojis
@@ -40,11 +41,12 @@ const PokemonInfo = ({
   height,
   imageUrl,
   text,
+  captureRate,
 }: PokemonInfoProps) => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full">
       {/* Image Section */}
-      <div className="relative mb-4 sm:mb-0">
+      <div className="relative mb-4 sm:mb-0 col-span-1">
         <Image
           src={imageUrl}
           alt={name}
@@ -56,7 +58,7 @@ const PokemonInfo = ({
       </div>
 
       {/* Text Section */}
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 col-span-2">
         <h1 className="text-3xl sm:text-5xl font-extrabold text-gray-900 capitalize flex gap-2">
           {name} <span className="text-gray-500 text-2xl">#{id}</span>
         </h1>
@@ -69,6 +71,10 @@ const PokemonInfo = ({
           |
           <p>
             <span className="font-semibold">Height:</span> {height} m
+          </p>
+          |{' '}
+          <p>
+            <span className="font-semibold">Capture Rate:</span> {captureRate}%
           </p>
         </div>
 

@@ -6,6 +6,7 @@ import PokemonInfo from './PokemonInfo';
 import Card from '../UI/Card';
 
 const PokemonDetail = ({ pokemon }: { pokemon: any }) => {
+  console.log('pokemon', pokemon);
   return (
     <div className="max-w-6xl mx-auto p-8 bg-gradient-to-br space-y-6 from-blue-50 to-indigo-100 shadow-xl rounded-3xl border border-gray-300">
       <div>
@@ -18,6 +19,7 @@ const PokemonDetail = ({ pokemon }: { pokemon: any }) => {
             id={pokemon.id}
             imageUrl={pokemon.imageUrl}
             text={pokemon.flavorText}
+            captureRate={pokemon.captureRate}
           />
         </div>
       </div>
