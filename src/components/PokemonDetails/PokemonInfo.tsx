@@ -59,7 +59,7 @@ const PokemonInfo = ({
 
       {/* Text Section */}
       <div className="flex flex-col gap-5 col-span-2">
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-gray-900 capitalize flex gap-2">
+        <h1 className="text-3xl sm:text-5xl font-bold text-gray-900 capitalize flex gap-2">
           {name} <span className="text-gray-500 text-2xl">#{id}</span>
         </h1>
         <h4 className="italic text-sm sm:text-base">{text}</h4>
