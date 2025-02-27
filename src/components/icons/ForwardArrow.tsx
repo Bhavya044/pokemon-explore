@@ -6,6 +6,7 @@ import React from 'react';
 const ForwardArrowIcon: React.FC<IconProps> = ({
   height,
   width,
+  fill,
   className,
 }) => (
   <svg
@@ -16,7 +17,7 @@ const ForwardArrowIcon: React.FC<IconProps> = ({
     enableBackground="new 0 0 32 32"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
-    fill="#000000"
+    fill={fill ?? '#000000'}
   >
     <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
     <g
@@ -46,7 +47,7 @@ const ForwardArrowIcon: React.FC<IconProps> = ({
           {' '}
           <path
             d="M2,31c-0.4,0-0.7-0.2-0.9-0.6c-0.2-0.5,0-1.1,0.4-1.3L27.8,16L1.6,2.9C1.1,2.6,0.9,2,1.1,1.6 C1.4,1.1,2,0.9,2.4,1.1l28,14c0.3,0.2,0.6,0.5,0.6,0.9s-0.2,0.7-0.6,0.9l-28,14C2.3,31,2.2,31,2,31z"
-            fill="#9C27B0"
+            fill={fill ?? '#9C27B0'}
           ></path>{' '}
         </g>{' '}
       </g>{' '}

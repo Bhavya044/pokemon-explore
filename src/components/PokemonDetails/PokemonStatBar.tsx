@@ -20,14 +20,14 @@ const PokemonStats = ({ stats }: PokemonStatsProps) => {
   }));
 
   return (
-    <div className="mt-8">
-      {/* Smaller Bar Chart with Responsive Design */}
-      <ResponsiveContainer width="100%" height={180}>
+    <div className="mt-10">
+      {/* Responsive Bar Chart with Labels Inside the Bars */}
+      <ResponsiveContainer width="100%" height={200}>
         <BarChart data={formattedStats} barSize={45}>
           <XAxis
             dataKey="name"
             axisLine={false}
-            tick={{ fill: '#8c8c8c', fontSize: 8 }}
+            tick={{ fill: '#8c8c8c', fontSize: 10 }}
             tickLine={false}
           />
           <YAxis type="number" hide />
@@ -38,12 +38,12 @@ const PokemonStats = ({ stats }: PokemonStatsProps) => {
             radius={[8, 8, 0, 0]}
             animationDuration={1500}
           >
-            {/* Add the number on top of each bar */}
+            {/* Show numbers inside the bars */}
             <LabelList
               dataKey="value"
-              position="top"
-              fill="#8c8c8c"
-              fontSize={14}
+              position="center"
+              fill="white"
+              fontSize={12}
               fontWeight="bold"
             />
           </Bar>
