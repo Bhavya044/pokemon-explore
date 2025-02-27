@@ -42,12 +42,48 @@ export const getPokemonByName = async (
 };
 
 export const getPokemonDetail = async (id: number) => {
+  // Fetch Pokémon details
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch Pokémon details');
-  }
-
   const data = await res.json();
-  return data;
+
+  // Fetch Pokémon species data to get evolution chain URL
+  const speciesRes = await fetch(
+    `https://pokeapi.co/api/v2/pokemon-species/${id}`,
+  );
+  const speciesData = await speciesRes.json();
+
+  // Fetch evolution chain data using the URL from species data
+  const evolutionRes = await fetch(speciesData.evolution_chain.url);
+  const evolutionData = await evolutionRes.json();
+
+  // Process and return the complete Pokémon data with evolution chain
+  return {
+    id: data.id,
+    name: data.name,
+    flavorText: speciesData?.flavor_text_entries?.[0]?.flavor_text,
+    captureRate: speciesData?.capture_rate,
+    types: data.types.map((type: { type: { name: string } }) => type.type.name),
+    stats: data.stats.map(
+      (stat: { stat: { name: string }; base_stat: number }) => ({
+        name: stat.stat.name,
+        value: stat.base_stat,
+      }),
+    ),
+    abilities: data.abilities.map(
+      (ability: { ability: { name: string }; is_hidden: boolean }) => ({
+        name: ability.ability.name,
+        version: ability.is_hidden ? 'Hidden' : 'Normal',
+      }),
+    ),
+    moves: data.moves.map(
+      (move: { move: { name: string }; version_group_details: any[] }) => ({
+        name: move.move.name,
+        version: move.version_group_details[0].move_learn_method.name,
+      }),
+    ),
+    height: data.height,
+    weight: data.weight,
+    imageUrl: data.sprites?.other['official-artwork']?.front_default,
+    evolutionChain: evolutionData.chain, // Include evolution chain data
+  };
 };

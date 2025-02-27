@@ -1,29 +1,56 @@
-import React from 'react';
+'use client';
 
-interface IStatBarProps {
-  name: string;
-  value: number;
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  ResponsiveContainer,
+  LabelList,
+} from 'recharts';
+
+interface PokemonStatsProps {
+  stats: { name: string; value: number }[];
 }
 
-export const PokemonStatBar: React.FC<IStatBarProps> = ({ name, value }) => {
-  const getBarColor = () => {
-    if (value >= 80) return 'bg-green-400';
-    if (value >= 50) return 'bg-yellow-400';
-    return 'bg-red-400';
-  };
+const PokemonStats = ({ stats }: PokemonStatsProps) => {
+  const formattedStats = stats.map((stat) => ({
+    name: stat.name.toUpperCase(),
+    value: stat.value,
+  }));
 
   return (
-    <div>
-      <div className="flex justify-between text-sm text-gray-600">
-        <span className="font-medium">{name}</span>
-        <span>{value}</span>
-      </div>
-      <div className="w-full bg-gray-200 rounded-full mt-1">
-        <div
-          className={`h-2 rounded-full ${getBarColor()}`}
-          style={{ width: `${value}%` }}
-        />
-      </div>
+    <div className="mt-8">
+      {/* Smaller Bar Chart with Responsive Design */}
+      <ResponsiveContainer width="100%" height={180}>
+        <BarChart data={formattedStats} barSize={45}>
+          <XAxis
+            dataKey="name"
+            axisLine={false}
+            tick={{ fill: '#8c8c8c', fontSize: 8 }}
+            tickLine={false}
+          />
+          <YAxis type="number" hide />
+
+          <Bar
+            dataKey="value"
+            fill="rgb(59, 130, 246)"
+            radius={[8, 8, 0, 0]}
+            animationDuration={1500}
+          >
+            {/* Add the number on top of each bar */}
+            <LabelList
+              dataKey="value"
+              position="top"
+              fill="#8c8c8c"
+              fontSize={14}
+              fontWeight="bold"
+            />
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
     </div>
   );
 };
+
+export default PokemonStats;

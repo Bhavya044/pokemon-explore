@@ -1,5 +1,7 @@
 import PokeLoader from '@/components/UI/PokeLoader';
 
-export default function Loading() {
+const loading = () => {
   return <PokeLoader />;
-}
+};
+
+export default loading;
