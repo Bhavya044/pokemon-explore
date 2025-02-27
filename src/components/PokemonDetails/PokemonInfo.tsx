@@ -43,15 +43,15 @@ export const PokemonInfo = ({
         </h1>
         <h4 className="italic text-sm sm:text-base">{text}</h4>
 
-        <div className="text-lg text-gray-700 flex gap-3">
+        <div className="text-lg text-gray-700 flex flex-wrap gap-3 sm:flex-nowrap sm:gap-5 justify-center sm:justify-start">
           <p>
             <span className="font-semibold">Weight:</span> {weight} kg
           </p>
-          |
+          <span className="hidden sm:inline">|</span>
           <p>
             <span className="font-semibold">Height:</span> {height} m
           </p>
-          |{' '}
+          <span className="hidden sm:inline">|</span>
           <p>
             <span className="font-semibold">Capture Rate:</span> {captureRate}%
           </p>

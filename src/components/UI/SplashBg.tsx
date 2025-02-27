@@ -14,8 +14,8 @@ export const SplashBg: React.FC<{
       <Image
         src="/blue-splash.png"
         alt="Blue Splash Background"
-        layout="fill"
-        objectFit="cover"
+        fill
+        style={{ objectFit: 'cover' }}
         className="opacity-80 z-0"
         priority
       />
