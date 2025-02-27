@@ -110,6 +110,7 @@ export const getPokemonDetail = async (id: number): Promise<IPokemonDetail> => {
       chain.push({
         name: current.species.name,
         url: current.species.url,
+        evolves_to: [],
       });
 
       // Move to the next evolution stage (if available)

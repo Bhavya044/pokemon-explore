@@ -11,7 +11,7 @@ import { ErrorDisplay } from './UI/ErrorDisplay';
 interface IPokemonListProps {
   initialPokemons: IPokemon[];
   totalCount: number;
-  nextUrl: string | null;
+  nextUrl: string;
 }
 
 const PokemonList: React.FC<IPokemonListProps> = ({
@@ -26,8 +26,8 @@ const PokemonList: React.FC<IPokemonListProps> = ({
   const [pokemons, setPokemons] = useState<IPokemon[]>(initialPokemons);
   const [filteredPokemons, setFilteredPokemons] =
     useState<IPokemon[]>(initialPokemons);
-  const [next, setNext] = useState<string | null>(nextUrl);
-  const [loading, setLoading] = useState(false);
+  const [next, setNext] = useState<string>(nextUrl);
+  const [loading, setLoading] = useState<boolean>(false);
 
   //fetch Pokemon data based on search input
   useEffect(() => {
@@ -52,7 +52,8 @@ const PokemonList: React.FC<IPokemonListProps> = ({
     };
 
     fetchSearchPokemon();
-  }, [search, pokemons, setSearchLoading]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [search]);
 
   //Load more Pokemon when scrolling to the bottom
   const loadMorePokemons = useCallback(async () => {
@@ -66,7 +67,7 @@ const PokemonList: React.FC<IPokemonListProps> = ({
         await getPokemonList(next);
       setPokemons((prev) => [...prev, ...newPokemons]);
       setFilteredPokemons((prev) => [...prev, ...newPokemons]);
-      setNext(newNext);
+      setNext(newNext ?? '');
     } finally {
       setLoading(false);
     }
@@ -109,7 +110,7 @@ const PokemonList: React.FC<IPokemonListProps> = ({
 
       {/* Pokemon grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5 content-center justify-center w-full">
-        {filteredPokemons.map((pokemon, index) => (
+        {filteredPokemons?.map((pokemon, index) => (
           <div
             ref={index === filteredPokemons.length - 1 ? lastPokemonRef : null} // if index is equal to last element
             key={pokemon.id}

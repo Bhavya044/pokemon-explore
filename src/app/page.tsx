@@ -7,11 +7,12 @@ const HomePage = async () => {
 
   return (
     <div className="container mx-auto px-4">
-      {/*render the Pokémon list with initial data */}
+      {/*render the Pokemon list with initial data */}
+      {/* //TODO: Rename props */}
       <PokemonList
         initialPokemons={pokemons}
         totalCount={count}
-        nextUrl={next}
+        nextUrl={next ?? ''}
       />
     </div>
   );
