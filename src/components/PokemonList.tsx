@@ -6,6 +6,7 @@ import { getPokemonList, getPokemonByName } from '@/utils/fetchPokemon';
 import PokeballIcon from './icons/PokeballIcon';
 import { IPokemon } from '@/types/pokemon';
 import { useSearch } from '@/context/SearchContext';
+import ErrorDisplay from './UI/ErrorDisplay';
 
 interface IPokemonListProps {
   initialPokemons: IPokemon[];
@@ -18,7 +19,7 @@ const PokemonList: React.FC<IPokemonListProps> = ({
   totalCount,
   nextUrl,
 }) => {
-  const { search, setSearchLoading } = useSearch();
+  const { search, setSearchLoading, setSearch } = useSearch();
   const [pokemons, setPokemons] = useState<IPokemon[]>(initialPokemons);
   const [filteredPokemons, setFilteredPokemons] =
     useState<IPokemon[]>(initialPokemons);
@@ -76,7 +77,7 @@ const PokemonList: React.FC<IPokemonListProps> = ({
   );
 
   return (
-    <div>
+    <>
       <div className="flex justify-end mb-4">
         <div className="bg-gray-100 text-gray-800 rounded-full px-4 py-1 shadow-sm flex items-center space-x-2">
           <PokeballIcon className="w-5 h-5" />
@@ -112,12 +113,7 @@ const PokemonList: React.FC<IPokemonListProps> = ({
         </div>
       )}
       {!loading && filteredPokemons.length === 0 && (
-        <div className="flex justify-center items-center mt-6 p-4 bg-gray-100 border-l-4 border-red-500 text-gray-700 rounded-md shadow-sm">
-          <span className="mr-3 text-red-500 text-xl">❌</span>
-          <p className="text-center text-lg font-medium">
-            No Pokemon found with that name.
-          </p>
-        </div>
+        <ErrorDisplay error={'No Pokemon found with that name'} />
       )}
 
       {!loading &&
@@ -127,7 +123,7 @@ const PokemonList: React.FC<IPokemonListProps> = ({
             🎉 You&apos;ve caught &apos;em all! 🏆
           </p>
         )}
-    </div>
+    </>
   );
 };
 

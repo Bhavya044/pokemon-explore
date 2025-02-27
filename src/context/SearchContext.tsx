@@ -7,6 +7,8 @@ interface SearchContextProps {
   setSearch: (search: string) => void;
   searchLoading: boolean;
   setSearchLoading: (loading: boolean) => void;
+  searchError: string | null;
+  setSearchError: (error: string | null) => void;
 }
 
 const SearchContext = createContext<SearchContextProps | undefined>(undefined);
@@ -14,10 +16,18 @@ const SearchContext = createContext<SearchContextProps | undefined>(undefined);
 export const SearchProvider = ({ children }: { children: ReactNode }) => {
   const [search, setSearch] = useState('');
   const [searchLoading, setSearchLoading] = useState(false);
+  const [searchError, setSearchError] = useState<string | null>(null); // New error state
 
   return (
     <SearchContext.Provider
-      value={{ search, setSearch, searchLoading, setSearchLoading }}
+      value={{
+        search,
+        setSearch,
+        searchLoading,
+        setSearchLoading,
+        searchError,
+        setSearchError,
+      }}
     >
       {children}
     </SearchContext.Provider>
