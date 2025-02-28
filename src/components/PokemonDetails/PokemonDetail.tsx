@@ -14,7 +14,6 @@ interface PokemonDetailProps {
 }
 
 const PokemonDetail: React.FC<PokemonDetailProps> = ({ pokemon }) => {
-  //next page and previous page buttons
   return (
     <Card classProp="p-4 border border-red-500 space-y-6">
       <div
