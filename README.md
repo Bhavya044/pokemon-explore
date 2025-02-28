@@ -15,7 +15,7 @@ A Pokémon Explorer web app built using Next.js and TypeScript. This app fetches
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-username/pokemon-explorer.git
+   git clone https://github.com/Bhavya044/pokemon-explorer.git
    ```
 2. Navigate to the project directory:
    ```sh
@@ -39,15 +39,6 @@ yarn dev
 ```
 Then open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Production Mode
-To build and start the production version:
-```sh
-npm run build
-npm start
-# or
-yarn build
-yarn start
-```
 
 ### Formatting Code
 To format the code, run:
