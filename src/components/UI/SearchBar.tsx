@@ -6,6 +6,8 @@ import { useRouter, usePathname } from 'next/navigation';
 import { getPokemonByName } from '@/utils/fetchPokemon';
 import PokeballIcon from '../icons/PokeballIcon';
 import SearchIcon from '../icons/SearchIcon';
+import useDebounce from '@/hooks/useDebounce';
+import path from 'path';
 
 const SearchBar = () => {
   const { setSearchLoading, setSearch, searchLoading, setSearchError, search } =
@@ -15,20 +17,21 @@ const SearchBar = () => {
 
   const [inputValue, setInputValue] = useState('');
 
+  const debouncedSearch = useDebounce(inputValue, 500);
+
   useEffect(() => {
     setSearchLoading?.(true);
     setSearchError?.(null); // Reset error on new search
 
-    const handler = setTimeout(async () => {
-      if (!inputValue.trim()) {
-        setSearch?.('');
+    const fetchPokemon = async () => {
+      if (!debouncedSearch.trim()) {
         setSearchLoading?.(false);
         setSearchError?.(null);
         return;
       }
 
-      setSearch?.(inputValue);
-      const pokemon = await getPokemonByName(inputValue.toLowerCase());
+      setSearch?.(debouncedSearch);
+      const pokemon = await getPokemonByName(debouncedSearch.toLowerCase());
 
       if (pokemon) {
         setSearchLoading?.(false);
@@ -41,11 +44,11 @@ const SearchBar = () => {
         setSearchLoading?.(false);
         setSearchError?.(`No Pokémon found named ${inputValue} !`);
       }
-    }, 500);
+    };
 
-    return () => clearTimeout(handler);
+    fetchPokemon();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inputValue, pathname]);
+  }, [debouncedSearch, path]);
 
   useEffect(() => {
     if (search === '') {
