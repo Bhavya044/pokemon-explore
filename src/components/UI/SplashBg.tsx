@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import React from 'react';
 
-export const SplashBg: React.FC<{
+const SplashBg: React.FC<{
   isLoading?: boolean;
   imageUrl: string;
   pokemonName: string;
@@ -42,3 +42,5 @@ export const SplashBg: React.FC<{
     </div>
   );
 };
+
+export default SplashBg;

@@ -11,40 +11,36 @@ import {
   LabelList,
 } from 'recharts';
 
-export const PokemonStats: React.FC<{ stats: IPokemonStat[] }> = ({
-  stats,
-}) => {
-  const formattedStats = stats.map((stat) => ({
+const PokemonStats: React.FC<{ stats: IPokemonStat[] }> = ({ stats }) => {
+  const formattedStats = stats?.map((stat) => ({
     name: stat.name.toUpperCase(),
     value: stat.value,
   }));
 
   return (
-    <div className="mt-10">
-      {/* Responsive Bar Chart with Labels Inside the Bars */}
+    <div className="mt-10 flex justify-center">
       <ResponsiveContainer width="100%" height={200}>
         <BarChart data={formattedStats} barSize={45}>
           <XAxis
             dataKey="name"
-            axisLine={false}
             tick={{ fill: '#8c8c8c', fontSize: 10 }}
             tickLine={false}
+            axisLine={false}
           />
           <YAxis type="number" hide />
 
           <Bar
             dataKey="value"
-            fill="rgb(59, 130, 246)"
             radius={[8, 8, 0, 0]}
+            fill="#4A90E2"
             animationDuration={1500}
           >
-            {/* Show numbers inside the bars */}
             <LabelList
               dataKey="value"
-              position="center"
-              fill="white"
               fontSize={12}
               fontWeight="bold"
+              fill="white"
+              position="center"
             />
           </Bar>
         </BarChart>
@@ -52,3 +48,5 @@ export const PokemonStats: React.FC<{ stats: IPokemonStat[] }> = ({
     </div>
   );
 };
+
+export default PokemonStats;

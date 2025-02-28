@@ -20,7 +20,7 @@ export interface IPokemonResponse {
 }
 
 export interface IPokemonResponseModified {
-  count: number;
+  totalCount: number;
   next: string | null;
   previous: string | null;
   pokemons: IPokemonListItem[];

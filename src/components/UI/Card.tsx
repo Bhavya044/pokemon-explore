@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Card: React.FC<{
+const Card: React.FC<{
   children: React.ReactNode;
   classProp?: string;
 }> = ({ children, classProp }) => {
@@ -10,3 +10,5 @@ export const Card: React.FC<{
     </div>
   );
 };
+
+export default Card;

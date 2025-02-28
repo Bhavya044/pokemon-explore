@@ -7,7 +7,7 @@ import { useSearch } from '@/context/SearchContext';
 
 const pressStart = Press_Start_2P({ subsets: ['latin'], weight: '400' });
 
-export const Navbar = () => {
+const Navbar = () => {
   const { setSearch, setSearchError } = useSearch();
 
   //clear search when navigating to home
@@ -34,3 +34,5 @@ export const Navbar = () => {
     </nav>
   );
 };
+
+export default Navbar;

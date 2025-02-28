@@ -1,4 +1,4 @@
-import { Navbar } from '@/components/UI/Navbar';
+import Navbar from '@/components/UI/Navbar';
 import './globals.css';
 import { SearchProvider } from '@/context/SearchContext';
 import { Exo } from 'next/font/google';

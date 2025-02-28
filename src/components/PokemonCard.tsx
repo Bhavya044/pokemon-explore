@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { IPokemon } from '@/types/pokemon';
-import { SplashBg } from './UI/SplashBg';
+import SplashBg from './UI/SplashBg';
 
 interface PokemonCardProps {
   pokemon: IPokemon;

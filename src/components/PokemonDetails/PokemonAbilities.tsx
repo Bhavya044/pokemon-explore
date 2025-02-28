@@ -1,25 +1,28 @@
 import React from 'react';
 import { IPokemonAbility } from '@/types/pokemon';
 
-export const PokemonAbilities: React.FC<{ abilities: IPokemonAbility[] }> = ({
-  abilities,
-}) => {
-  return (
-    <div className="flex flex-wrap gap-3 mt-3">
-      {abilities.map((ability, index) => (
-        <span
-          key={`${ability.name}${index}`}
-          className="bg-yellow-300 text-yellow-800 px-4 py-2 rounded-xl text-sm font-semibold shadow"
-        >
-          {/* Ability name */}
-          <span className="font-bold">{ability?.name}</span>
+type Props = {
+  abilities: IPokemonAbility[];
+};
 
-          {/* Version information */}
-          <span className="text-yellow-700 ml-2 text-xs">
-            - {ability?.version}
+const PokemonAbilities: React.FC<Props> = ({ abilities }) => {
+  if (!abilities?.length) return null;
+
+  return (
+    <div className=" mt-3 flex flex-wrap gap-3">
+      {abilities?.map(({ name, version }, index) => {
+        const abilityLabel = `${name} - ${version}`;
+        return (
+          <span
+            key={index}
+            className="bg-yellow-300 text-yellow-800 px-4 py-2 rounded-xl text-sm font-semibold shadow"
+          >
+            {abilityLabel}
           </span>
-        </span>
-      ))}
+        );
+      })}
     </div>
   );
 };
+
+export default PokemonAbilities;

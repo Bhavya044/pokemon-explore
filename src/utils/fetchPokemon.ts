@@ -11,13 +11,14 @@ import {
   IPokemonResponseModified,
 } from '@/types/pokemon';
 
-//fetch list ofPokemon with pagination support
+//fetch list of Pokemon with pagination support
 export async function getPokemonList(
   url?: string,
 ): Promise<IPokemonResponseModified> {
   //url is link to get the next set of Pokemon
   const fetchUrl = url ?? 'https://pokeapi.co/api/v2/pokemon?limit=10';
   const res = await fetch(fetchUrl);
+  if (!res.ok) return { totalCount: 0, next: '', pokemons: [], previous: '' };
   const data: IPokemonResponse = await res.json();
 
   //ensure that only unique pokemon values are returned
@@ -36,7 +37,7 @@ export async function getPokemonList(
     });
 
   return {
-    count: data.count,
+    totalCount: data.count,
     next: data.next,
     previous: data.previous,
     pokemons: uniquePokemons,
@@ -71,15 +72,19 @@ export const getPokemonByName = async (
 };
 
 //fetch Pokemon details by ID
-export const getPokemonDetail = async (id: number): Promise<IPokemonDetail> => {
-  //Fetch Pokemon details
+export const getPokemonDetail = async (
+  id: number,
+): Promise<IPokemonDetail | null> => {
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+
+  if (!res.ok) return null;
   const data: IPokemonDetailsOriginal = await res.json();
 
   // Fetch Pokemon species data
   const speciesRes = await fetch(
     `https://pokeapi.co/api/v2/pokemon-species/${id}`,
   );
+
   const speciesData: IPokemonDetailsOriginal = await speciesRes.json();
 
   //Fetch evolution chain data by chain url
@@ -104,7 +109,6 @@ export const getPokemonDetail = async (id: number): Promise<IPokemonDetail> => {
       evolves_to: unknown[];
     } | null = evolution;
 
-    //traverse the evolution chain
     while (current) {
       //add the current evolution to the chain
       chain.push({
@@ -113,7 +117,7 @@ export const getPokemonDetail = async (id: number): Promise<IPokemonDetail> => {
         evolves_to: [],
       });
 
-      // Move to the next evolution stage (if available)
+      // Move to the next evolution stage
       current =
         current.evolves_to.length > 0
           ? (current.evolves_to[0] as {

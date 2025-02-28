@@ -12,7 +12,7 @@ interface PokemonInfoProps {
   captureRate: number;
 }
 
-export const PokemonInfo = ({
+const PokemonInfo = ({
   name,
   id,
   types,
@@ -31,14 +31,14 @@ export const PokemonInfo = ({
           alt={name}
           width={350}
           height={350}
-          className="object-contain w-full sm:w-auto"
+          className=" w-full  object-contain sm:w-auto"
           priority
         />
       </div>
 
       {/* Text Section */}
-      <div className="flex flex-col gap-5 col-span-2">
-        <h1 className="text-3xl sm:text-5xl font-bold text-gray-900 capitalize flex gap-2">
+      <div className=" col-span-2 flex flex-col gap-5">
+        <h1 className="capitalize font-bold text-3xl sm:text-5xl text-gray-900 flex gap-2">
           {name} <span className="text-gray-500 text-2xl">#{id}</span>
         </h1>
         <h4 className="italic text-sm sm:text-base">{text}</h4>
@@ -58,22 +58,22 @@ export const PokemonInfo = ({
         </div>
 
         {/* Type Section */}
-        <div>
-          <div className="flex flex-wrap gap-3 mt-2">
-            {types.map((type) => (
-              <span
-                key={type}
-                className={`px-4 py-1 rounded-lg text-sm font-semibold border ${typeAttributes[type]?.color ?? 'border-gray-500 text-gray-500'} flex items-center`}
-              >
-                <span className="mr-2 text-xl">
-                  {typeAttributes[type]?.emoji}
-                </span>
-                <span>{type}</span>
+        <div className="mt-2 flex flex-wrap gap-3">
+          {types?.map((type) => (
+            <span
+              key={type}
+              className={`px-4 py-1 rounded-lg text-sm font-semibold border ${typeAttributes[type]?.color ?? 'border-gray-500 text-gray-500'} flex items-center`}
+            >
+              <span className="mr-2 text-xl">
+                {typeAttributes[type]?.emoji}
               </span>
-            ))}
-          </div>
+              <span>{type}</span>
+            </span>
+          ))}
         </div>
       </div>
     </div>
   );
 };
+
+export default PokemonInfo;

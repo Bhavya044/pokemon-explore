@@ -6,16 +6,16 @@ import { getPokemonList, getPokemonByName } from '@/utils/fetchPokemon';
 import PokeballIcon from './icons/PokeballIcon';
 import { IPokemon } from '@/types/pokemon';
 import { useSearch } from '@/context/SearchContext';
-import { ErrorDisplay } from './UI/ErrorDisplay';
+import ErrorDisplay from './UI/ErrorDisplay';
 
 interface IPokemonListProps {
-  initialPokemons: IPokemon[];
+  list: IPokemon[];
   totalCount: number;
   nextUrl: string;
 }
 
 const PokemonList: React.FC<IPokemonListProps> = ({
-  initialPokemons, //initial Pokémon list.
+  list, //initial Pokémon list.
   totalCount, //total number of Pokemon available
   nextUrl, //URL for the next set of Pokemon (pagination).
 }) => {
@@ -23,9 +23,8 @@ const PokemonList: React.FC<IPokemonListProps> = ({
   //reference to track last Pokemon card to fetch next set of pokemon
   const observerRef = useRef<IntersectionObserver | null>(null);
 
-  const [pokemons, setPokemons] = useState<IPokemon[]>(initialPokemons);
-  const [filteredPokemons, setFilteredPokemons] =
-    useState<IPokemon[]>(initialPokemons);
+  const [pokemons, setPokemons] = useState<IPokemon[]>(list);
+  const [filteredPokemons, setFilteredPokemons] = useState<IPokemon[]>(list);
   const [next, setNext] = useState<string>(nextUrl);
   const [loading, setLoading] = useState<boolean>(false);
 

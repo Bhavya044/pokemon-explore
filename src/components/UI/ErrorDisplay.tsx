@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const ErrorDisplay: React.FC<{ error: string }> = ({ error }) => {
+const ErrorDisplay: React.FC<{ error: string }> = ({ error }) => {
   return (
     <div className="flex justify-center items-center mt-6 p-4 bg-gray-100 border-l-4 border-red-500 text-gray-700 rounded-md shadow-sm">
       <span className="mr-3 text-red-500 text-xl">❌</span>
@@ -8,3 +8,5 @@ export const ErrorDisplay: React.FC<{ error: string }> = ({ error }) => {
     </div>
   );
 };
+
+export default ErrorDisplay;

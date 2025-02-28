@@ -1,4 +1,4 @@
-import { PokemonDetail } from '@/components/PokemonDetails/PokemonDetail';
+import PokemonDetailPage from '@/components/PokemonDetails/PokemonDetailPage';
 import { getPokemonDetail } from '@/utils/fetchPokemon';
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
@@ -8,7 +8,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   return (
     <div className="container mx-auto px-4">
-      <PokemonDetail pokemon={pokemonData} />
+      <PokemonDetailPage pokemon={pokemonData} />
     </div>
   );
 };
