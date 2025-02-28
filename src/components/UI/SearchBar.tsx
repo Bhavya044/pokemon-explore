@@ -8,11 +8,12 @@ import PokeballIcon from '../icons/PokeballIcon';
 import SearchIcon from '../icons/SearchIcon';
 
 const SearchBar = () => {
-  const [inputValue, setInputValue] = useState('');
   const { setSearchLoading, setSearch, searchLoading, setSearchError, search } =
     useSearch();
   const router = useRouter();
   const pathname = usePathname();
+
+  const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
     setSearchLoading(true);
@@ -56,19 +57,19 @@ const SearchBar = () => {
     <div className="relative w-full sm:w-72">
       <input
         type="text"
-        placeholder="Search Pokémon by name..."
+        placeholder="Search Pokemon by name..."
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         className="rounded-lg px-4 py-2 border border-gray-300 focus:ring-2 focus:ring-yellow-400 focus:outline-none w-full"
       />
       <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
         {inputValue && searchLoading ? (
-          <div className="animate-spin w-6 h-6 opacity-100">
+          <div className="animate-spin w-6  opacity-100 h-6">
             <PokeballIcon />
           </div>
         ) : inputValue ? (
           <p
-            className="text-lg font-semibold cursor-pointer"
+            className="text-lg mb-1  cursor-pointer font-semibold"
             onClick={() => {
               setInputValue('');
               setSearch('');

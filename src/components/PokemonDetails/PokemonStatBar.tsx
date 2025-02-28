@@ -18,14 +18,16 @@ const PokemonStats: React.FC<{ stats: IPokemonStat[] }> = ({ stats }) => {
   }));
 
   return (
-    <div className="mt-10 flex justify-center">
+    <div className="mt-2 flex justify-center">
       <ResponsiveContainer width="100%" height={200}>
         <BarChart data={formattedStats} barSize={45}>
           <XAxis
             dataKey="name"
-            tick={{ fill: '#8c8c8c', fontSize: 10 }}
+            tick={{
+              fill: '#8c8c8c',
+              fontSize: 10,
+            }}
             tickLine={false}
-            axisLine={false}
           />
           <YAxis type="number" hide />
 

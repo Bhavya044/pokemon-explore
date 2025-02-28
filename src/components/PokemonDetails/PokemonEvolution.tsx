@@ -17,7 +17,7 @@ const PokemonEvolution: React.FC<{
     return (
       <div
         key={`${evolution?.name}-${index ?? 0}`}
-        className="flex md:gap-5 items-center space-y-3 sm:space-y-5 flex-col sm:flex-row md:space-x-5 sm:justify-center"
+        className="flex md:gap-5 items-center gap-2 flex-col sm:flex-row md:space-x-5 sm:justify-center"
       >
         {/* Pokemon Image*/}
         <div className="flex flex-col items-center">
@@ -25,7 +25,7 @@ const PokemonEvolution: React.FC<{
             pokemonName={evolution?.name}
             imageUrl={getPokemonImageUrl(evolution?.url)}
           />
-          <span className="font-semibold text-gray-800 capitalize">
+          <span className="font-semibold text-gray-600 capitalize">
             {evolution?.name}
           </span>
         </div>

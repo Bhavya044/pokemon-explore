@@ -1,5 +1,5 @@
 // Pokemon Type colors and emojis
-export const typeAttributes: {
+export const pokemonTypesColors: {
   [key: string]: { color: string; emoji: string };
 } = {
   ice: { color: 'border-teal-400 text-teal-400', emoji: '❄️' },

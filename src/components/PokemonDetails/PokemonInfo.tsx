@@ -1,4 +1,4 @@
-import { typeAttributes } from '@/utils/helper.config';
+import { pokemonTypesColors } from '@/utils/helper.config';
 import Image from 'next/image';
 
 interface PokemonInfoProps {
@@ -23,9 +23,9 @@ const PokemonInfo = ({
   captureRate,
 }: PokemonInfoProps) => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full">
+    <div className=" w-full grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-4 xs:gap-2">
       {/* Image Section */}
-      <div className="relative mb-4 sm:mb-0 col-span-1">
+      <div className="relative mb-4 col-span-1 items-center justify-center flex">
         <Image
           src={imageUrl}
           alt={name}
@@ -38,38 +38,41 @@ const PokemonInfo = ({
 
       {/* Text Section */}
       <div className=" col-span-2 flex flex-col gap-5">
-        <h1 className="capitalize font-bold text-3xl sm:text-5xl text-gray-900 flex gap-2">
+        <h1 className="capitalize font-bold text-3xl md:text-5xl text-gray-900 flex gap-2 flex-wrap">
           {name} <span className="text-gray-500 text-2xl">#{id}</span>
         </h1>
         <h4 className="italic text-sm sm:text-base">{text}</h4>
 
-        <div className="text-lg text-gray-700 flex flex-wrap gap-3 sm:flex-nowrap sm:gap-5 justify-center sm:justify-start">
-          <p>
+        <div className="text-lg text-gray-700 flex smx:flex-row flex-col items-start smx:justify-start  flex-wrap gap-3 sm:flex-nowrap sm:gap-5 justify-center sm:justify-start">
+          <p className="flex flex-col lg:flex-row gap-2">
             <span className="font-semibold">Weight:</span> {weight} kg
           </p>
-          <span className="hidden sm:inline">|</span>
-          <p>
+          <span className="hidden lg:inline">|</span>
+          <p className="flex flex-col lg:flex-row gap-2">
             <span className="font-semibold">Height:</span> {height} m
           </p>
-          <span className="hidden sm:inline">|</span>
-          <p>
+          <span className="hidden lg:inline">|</span>
+          <p className="flex flex-col lg:flex-row gap-2">
             <span className="font-semibold">Capture Rate:</span> {captureRate}%
           </p>
         </div>
 
         {/* Type Section */}
         <div className="mt-2 flex flex-wrap gap-3">
-          {types?.map((type) => (
-            <span
-              key={type}
-              className={`px-4 py-1 rounded-lg text-sm font-semibold border ${typeAttributes[type]?.color ?? 'border-gray-500 text-gray-500'} flex items-center`}
-            >
-              <span className="mr-2 text-xl">
-                {typeAttributes[type]?.emoji}
+          {types.map((type) => {
+            const colorClasses = pokemonTypesColors[type]?.color;
+            return (
+              <span
+                key={type}
+                className={`px-4 py-1 rounded-lg text-sm font-semibold border ${colorClasses ?? 'border-gray-500 text-gray-500'} flex items-center`}
+              >
+                <span className="mr-2 text-xl">
+                  {pokemonTypesColors[type]?.emoji}
+                </span>
+                {<span>{type}</span>}
               </span>
-              <span>{type}</span>
-            </span>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

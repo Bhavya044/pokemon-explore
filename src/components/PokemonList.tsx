@@ -93,27 +93,22 @@ const PokemonList: React.FC<IPokemonListProps> = ({
     <>
       {/* Display Pokemon count */}
       <div className="flex justify-end mb-4">
-        <div className="bg-gray-100 text-gray-800 rounded-full px-4 py-1 shadow-sm flex items-center space-x-2">
+        <div className="rounded-full px-4  bg-gray-100 text-gray-800 py-1 shadow-sm flex items-center space-x-2">
           <PokeballIcon className="w-5 h-5" />
           <span className="text-sm font-medium">
-            Explored{' '}
-            <span className="text-blue-600 font-semibold">
-              {filteredPokemons.length}
-            </span>{' '}
-            out of{' '}
-            <span className="text-blue-600 font-semibold">{totalCount}</span>{' '}
-            Pokémon
+            Total Pokemon:
+            <span className="text-blue-600 font-semibold"> {totalCount}</span>
           </span>
         </div>
       </div>
 
       {/* Pokemon grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5 content-center justify-center w-full">
+      <div className=" w-full grid grid-cols-2 smx:grid-cols-3  sm:grid-cols-3 xs:grid-cols-2  md:grid-cols-4 lg:grid-cols-5 content-center justify-center gap-5 ">
         {filteredPokemons?.map((pokemon, index) => (
           <div
             ref={index === filteredPokemons.length - 1 ? lastPokemonRef : null} // if index is equal to last element
             key={pokemon.id}
-            className="transition-transform transform hover:scale-105 hover:shadow-md rounded-lg duration-300 mx-auto"
+            className="hover:shadow-md rounded-lg  transition-transform transform hover:scale-105duration-300 mx-auto"
           >
             <PokemonCard pokemon={pokemon} />
           </div>
