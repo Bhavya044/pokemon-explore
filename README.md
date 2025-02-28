@@ -31,29 +31,32 @@ A Pokémon Explorer web app built using Next.js and TypeScript. This app fetches
 ## Running the App
 
 ### Development Mode
+
 To start the development server, run:
+
 ```sh
 npm run dev
 # or
 yarn dev
 ```
+
 Then open [http://localhost:3000](http://localhost:3000) in your browser.
 
-
 ### Formatting Code
+
 To format the code, run:
+
 ```sh
 npm run format
 ```
 
 ## Tech Stack
+
 - **Next.js** (App Router)
 - **TypeScript**
 - **Tailwind CSS**
 - **PokéAPI**
 
 ## Deployment
+
 The app is deployed at: [[https://pokemon-explorer.vercel.app](https://pokemon-explore-beta.vercel.app/)]
-
-
-
