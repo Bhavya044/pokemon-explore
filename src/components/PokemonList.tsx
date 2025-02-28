@@ -38,7 +38,7 @@ const PokemonList: React.FC<IPokemonListProps> = ({
       }
       //else find filtered pokemon by search
       try {
-        setSearchLoading(true);
+        setSearchLoading?.(true);
 
         const pokemon = await getPokemonByName(search.toLowerCase());
         setFilteredPokemons(pokemon ? [pokemon] : []);
@@ -46,7 +46,7 @@ const PokemonList: React.FC<IPokemonListProps> = ({
         console.error(error);
         setFilteredPokemons([]);
       } finally {
-        setSearchLoading(false);
+        setSearchLoading?.(false);
       }
     };
 
