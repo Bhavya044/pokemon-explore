@@ -24,13 +24,13 @@ const SearchBar = () => {
     setSearchError?.(null); // Reset error on new search
 
     const fetchPokemon = async () => {
+      setSearch?.(debouncedSearch);
       if (!debouncedSearch.trim()) {
         setSearchLoading?.(false);
         setSearchError?.(null);
         return;
       }
 
-      setSearch?.(debouncedSearch);
       const pokemon = await getPokemonByName(debouncedSearch.toLowerCase());
 
       if (pokemon) {

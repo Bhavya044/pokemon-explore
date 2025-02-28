@@ -103,7 +103,9 @@ const PokemonList: React.FC<IPokemonListProps> = ({
       </div>
 
       {/* Pokemon grid */}
-      <div className=" w-full grid grid-cols-2 smx:grid-cols-3  sm:grid-cols-3 xs:grid-cols-2  md:grid-cols-4 lg:grid-cols-5 content-center justify-center gap-5 ">
+      <div
+        className={` w-full grid ${filteredPokemons?.length === 1 ? 'grid-cols-1' : 'grid-cols-2 smx:grid-cols-3  sm:grid-cols-3 xs:grid-cols-2  md:grid-cols-4 lg:grid-cols-5'}  content-center justify-center gap-5 `}
+      >
         {filteredPokemons?.map((pokemon, index) => (
           <div
             ref={index === filteredPokemons.length - 1 ? lastPokemonRef : null} // if index is equal to last element
