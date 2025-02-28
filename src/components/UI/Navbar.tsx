@@ -12,8 +12,8 @@ const Navbar = () => {
 
   //clear search when navigating to home
   const handleHomeClick = () => {
-    setSearch(''); // Clear search input
-    setSearchError(''); // Clear error message
+    setSearch?.(''); // Clear search input
+    setSearchError?.(''); // Clear error message
   };
 
   return (
