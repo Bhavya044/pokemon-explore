@@ -1,7 +1,5 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import ForwardArrowIcon from '../icons/ForwardArrow';
 import { IPokemonDetail } from '@/types/pokemon';
 import PokemonAbilities from './PokemonAbilities';
 import PokemonInfo from './PokemonInfo';
@@ -9,50 +7,14 @@ import PokemonStats from './PokemonStatBar';
 import PokemonMoves from './PokemonMoves';
 import PokemonEvolution from './PokemonEvolution';
 import Card from '../UI/Card';
+import NavigationButton from '../UI/NavigationButton';
 
 interface PokemonDetailProps {
   pokemon: IPokemonDetail;
 }
 
 const PokemonDetail: React.FC<PokemonDetailProps> = ({ pokemon }) => {
-  const router = useRouter();
-
-  //navigate to previous or next Pokémon by ID
-  const handleNavigation = (id: number) => {
-    router.push(`/pokemon/${id}`);
-  };
-
   //next page and previous page buttons
-  const NavigationButton = ({
-    direction,
-    id,
-  }: {
-    direction: 'Prev' | 'Next';
-    id: number;
-  }) => (
-    <button
-      onClick={() => handleNavigation(id)}
-      className={`${
-        direction === 'Prev'
-          ? ' hover:bg-red-600 bg-red-500 '
-          : 'bg-black hover:bg-blue-600'
-      } text-white text-sm  px-3 py-1 rounded-full shadow-lg transition-all flex items-center gap-2`}
-    >
-      {direction === 'Prev' && (
-        <ForwardArrowIcon
-          fill="white"
-          height={10}
-          className="rotate-180"
-          width={10}
-        />
-      )}
-      {direction} #{id}
-      {direction === 'Next' && (
-        <ForwardArrowIcon fill="white" height={10} width={10} />
-      )}
-    </button>
-  );
-
   return (
     <Card classProp="p-4 border border-red-500 space-y-6">
       <div

@@ -8,6 +8,7 @@ const HomePage = async () => {
 
   if (!pokemons?.length)
     return <ErrorDisplay error="Error while fetching Pokemon List" />;
+
   return (
     <div className="container px-4 mx-auto">
       <PokemonList

@@ -72,7 +72,7 @@ export const getPokemonByName = async (
 };
 
 //fetch Pokemon details by ID
-export const getPokemonDetail = async (
+export const getPokemonDetailById = async (
   id: number,
 ): Promise<IPokemonDetail | null> => {
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);

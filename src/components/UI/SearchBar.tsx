@@ -16,30 +16,30 @@ const SearchBar = () => {
   const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
-    setSearchLoading(true);
-    setSearchError(null); // Reset error on new search
+    setSearchLoading?.(true);
+    setSearchError?.(null); // Reset error on new search
 
     const handler = setTimeout(async () => {
       if (!inputValue.trim()) {
-        setSearch('');
-        setSearchLoading(false);
-        setSearchError(null);
+        setSearch?.('');
+        setSearchLoading?.(false);
+        setSearchError?.(null);
         return;
       }
 
-      setSearch(inputValue);
+      setSearch?.(inputValue);
       const pokemon = await getPokemonByName(inputValue.toLowerCase());
 
       if (pokemon) {
-        setSearchLoading(false);
-        setSearchError(null); // Reset error if found
+        setSearchLoading?.(false);
+        setSearchError?.(null); // Reset error if found
 
         if (pathname.startsWith('/pokemon/')) {
           router.push(`/pokemon/${pokemon.id}`);
         }
       } else {
-        setSearchLoading(false);
-        setSearchError(`No Pokémon found named ${inputValue} !`);
+        setSearchLoading?.(false);
+        setSearchError?.(`No Pokémon found named ${inputValue} !`);
       }
     }, 500);
 
@@ -72,7 +72,7 @@ const SearchBar = () => {
             className="text-lg mb-1  cursor-pointer font-semibold"
             onClick={() => {
               setInputValue('');
-              setSearch('');
+              setSearch?.('');
             }}
           >
             x

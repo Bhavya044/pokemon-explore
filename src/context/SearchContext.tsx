@@ -4,19 +4,25 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface SearchContextProps {
   search: string; //search string
-  setSearch: (search: string) => void;
-  searchLoading: boolean; //boolean indicator
-  setSearchLoading: (loading: boolean) => void;
+  setSearch?: (search: string) => void;
+  searchLoading: boolean; //boolean indicator to show if search is in progress
+  setSearchLoading?: (loading: boolean) => void;
   searchError: string | null;
-  setSearchError: (error: string | null) => void;
+  setSearchError?: (error: string | null) => void;
 }
 
-const SearchContext = createContext<SearchContextProps | undefined>(undefined);
+const initialContextValues: SearchContextProps = {
+  search: '',
+  searchError: '',
+  searchLoading: false,
+};
+
+const SearchContext = createContext<SearchContextProps>(initialContextValues);
 
 export const SearchProvider = ({ children }: { children: ReactNode }) => {
   const [search, setSearch] = useState('');
   const [searchLoading, setSearchLoading] = useState(false);
-  const [searchError, setSearchError] = useState<string | null>(null); // New error state
+  const [searchError, setSearchError] = useState<string | null>(null);
 
   return (
     <SearchContext.Provider
@@ -36,8 +42,5 @@ export const SearchProvider = ({ children }: { children: ReactNode }) => {
 
 export const useSearch = () => {
   const context = useContext(SearchContext);
-  if (!context) {
-    throw new Error('useSearch must be used within a SearchProvider');
-  }
   return context;
 };
